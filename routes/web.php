@@ -37,4 +37,9 @@ Route::middleware([
     Route::delete('/kriterias-delete-{kriteria}', [KriteriaController::class, 'destroy'])->name('kriterias.delete');
     Route::get('/nilaiMahasiswa', [NilaiMahasiswaController::class, 'index'])->name('nilaiMahasiswa.index');
     Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
+    Route::get('/rekomendasi-create', [RekomendasiController::class, 'create'])->name('rekomendasi.create');
+    Route::post('/rekomendasi-store', [RekomendasiController::class, 'store'])->name('rekomendasi.store');
+    Route::get('/rekomendasi-edit-{rekomendasi}', [RekomendasiController::class, 'edit'])->name('rekomendasi.edit');
+    Route::put('/rekomendasi-update-{rekomendasi}', [RekomendasiController::class, 'update'])->name('rekomendasi.update');
+    Route::delete('/rekomendasi-delete-{rekomendasi}', [RekomendasiController::class, 'destroy'])->name('rekomendasi.delete');
 });
