@@ -13,7 +13,7 @@ class Rekomendasi extends Model
         'total_skor',
     ];
 
-    public function nilai_mahasiswa()
+    public function nilaiMahasiswa()
     {
         return $this->belongsTo(NilaiMahasiswa::class);
     }
@@ -27,6 +27,4 @@ class Rekomendasi extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
-    
 }
