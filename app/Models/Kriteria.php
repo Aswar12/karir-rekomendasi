@@ -13,6 +13,8 @@ class Kriteria extends Model
     protected $fillable = [
         'nama_kriteria',
         'bobot',
+        'updated_at',
+        'created_at'
     ];
 
     public function nilaiMahasiswa()

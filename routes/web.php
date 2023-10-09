@@ -29,7 +29,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/kriterias', [KriteriaController::class, 'index'])->name('kriterias.index');
+    Route::resource('kriterias', KriteriaController::class);
+
     Route::get('/nilaiMahasiswa', [NilaiMahasiswaController::class, 'index'])->name('nilaiMahasiswa.index');
     Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
 });

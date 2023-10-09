@@ -21,7 +21,8 @@ class KriteriaController extends Controller
      */
     public function create()
     {
-        //
+        $kriterias = Kriteria::all();
+        return view('kriteria.create', compact('kriterias'));
     }
 
     /**
@@ -29,7 +30,8 @@ class KriteriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Kriteria::create($request->all());
+        return redirect()->route('kriterias.index');
     }
 
     /**
