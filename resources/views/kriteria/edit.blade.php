@@ -8,7 +8,7 @@
     <div class="py-10 bg-gray-400 h-auto ">
         <div class="max-w-7xl mx-auto h-auto sm:px-6 lg:px-8">
             <div class="bg-white rounded-xl mt-6 mx-6 overflow-hidden  shadow-xl sm:rounded-lg">
-                <form action={{ route('kriterias.update', $kriterias->id ) }} class="my-8 mx-8">
+                <form action="{{ route('kriterias.update', $kriterias->id) }}" method="POST" class="my-8 mx-8">
                     @csrf
                     @method('PUT')
                     <div class="relative z-0 w-full mb-6 group">

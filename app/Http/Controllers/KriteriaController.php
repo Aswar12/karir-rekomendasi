@@ -65,6 +65,8 @@ class KriteriaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $kriterias = Kriteria::findOrFail($id);
+        $kriterias->delete();
+        return redirect()->route('kriterias.index')->with('success', 'Item berhasil dihapus');
     }
 }
