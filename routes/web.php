@@ -29,8 +29,11 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::resource('kriterias', KriteriaController::class);
-
+    Route::get('/kriterias', [KriteriaController::class, 'index'])->name('kriterias.index');
+    Route::get('/kriterias-create', [KriteriaController::class, 'create'])->name('kriterias.create');
+    Route::post('/kriterias-store', [KriteriaController::class, 'store'])->name('kriterias.store');
+    Route::get('/kriterias-edit/{kriteria}', [KriteriaController::class, 'edit'])->name('kriterias.edit');
+    Route::put('/kriterias-update/{kriteria}', [KriteriaController::class, 'update'])->name('kriterias.update');
     Route::get('/nilaiMahasiswa', [NilaiMahasiswaController::class, 'index'])->name('nilaiMahasiswa.index');
     Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
 });

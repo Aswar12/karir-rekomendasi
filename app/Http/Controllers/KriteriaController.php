@@ -37,9 +37,8 @@ class KriteriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, $kriterias)
     {
-        //
     }
 
     /**
@@ -47,7 +46,8 @@ class KriteriaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $kriterias = Kriteria::findOrFail($id);
+        return view('kriteria.edit', compact('kriterias'));
     }
 
     /**
@@ -55,7 +55,9 @@ class KriteriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $kriterias = Kriteria::findOrFail($id);
+        $kriterias->update($request->all());
+        return redirect()->route('kriterias.index');
     }
 
     /**

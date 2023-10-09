@@ -30,11 +30,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($kriterias as $kriteria )
+                        @foreach ($kriterias as $index => $kriteria )
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">
-
+                                {{ $index+1 }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $kriteria->nama_kriteria }}
@@ -45,7 +45,7 @@
                             <td class="px-6 py-4">
                                 <div class="row flex-shrink-0">
 
-                                    <a href="/kriteria-edit-{{ $kriteria->id }}"
+                                    <a href="/kriterias-edit/{{ $kriteria->id }}"
                                         class="inline-flex px-2 py-2 mx-1 mb-1 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                             <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
