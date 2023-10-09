@@ -21,7 +21,8 @@ class NilaiMahasiswaController extends Controller
      */
     public function create()
     {
-        //
+        $nilaiMahasiswa = NilaiMahasiswa::all();
+        return view('nilaiMahasiswa.create', compact('nilaiMahasiswa'));
     }
 
     /**
@@ -45,7 +46,8 @@ class NilaiMahasiswaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $nilaiMahasiswa = NilaiMahasiswa::findOrFail($id);
+        return view('nilaiMahasiswa.edit', compact('nilaiMahasiswa'));
     }
 
     /**
@@ -53,7 +55,9 @@ class NilaiMahasiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $nilaiMahasiswa = NilaiMahasiswa::findOrFail($id);
+        $nilaiMahasiswa->update($request->all());
+        return redirect()->route('nilaiMahasiswa.index');
     }
 
     /**
@@ -61,6 +65,8 @@ class NilaiMahasiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $nilaiMahasiswa = NilaiMahasiswa::findOrFail($id);
+        $nilaiMahasiswa->delete();
+        return redirect()->route('nilaiMahasiswa.index')->with('success', 'Item berhasil dihapus');
     }
 }
