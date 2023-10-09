@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kriteria;
 use App\Models\NilaiMahasiswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class NilaiMahasiswaController extends Controller
@@ -21,16 +23,29 @@ class NilaiMahasiswaController extends Controller
      */
     public function create()
     {
-        $nilaiMahasiswa = NilaiMahasiswa::all();
-        return view('nilaiMahasiswa.create', compact('nilaiMahasiswa'));
+        // Anda mungkin perlu mengirimkan data mahasiswa dan kriteria ke tampilan
+        $mahasiswaList = User::where('role', 'mahasiswa')->get();
+        $kriteriaList =Kriteria::all();
+
+        return view('nilaiMahasiswa.create', compact('mahasiswaList', 'kriteriaList'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Simpan data dari formulir ke database
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'mahasiswa_id' => 'required',
+            'kriteria_id' => 'required',
+            'nilai' => 'required',
+        ]);
+
+        NilaiMahasiswa::create([
+            'mahasiswa_id' => $request->mahasiswa_id,
+            'kriteria_id' => $request->kriteria_id,
+            'nilai' => $request->nilai,
+        ]);
+
+        return redirect()->route('nilaiMahasiswa.create')->with('success', 'Nilai Mahasiswa berhasil ditambahkan.');
     }
 
     /**
