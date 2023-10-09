@@ -5,11 +5,8 @@
         </h2>
     </x-slot>
 
-    <div class="py-10">
+    <div class="py-10  bg-gray-400 ">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-         <a href={{ route('kriterias.create') }}
-                class="text-gray-700  hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"><Span>
-                </Span> Tambah</a>
             <div class="bg-white rounded-xl overflow-hidden  shadow-xl sm:rounded-lg">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
@@ -27,7 +24,7 @@
                                 Kriteria
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Nilai 
+                                Nilai
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Action
@@ -85,6 +82,6 @@
             </div>
         </div>
     </div>
-    
+
 
 </x-app-layout>
