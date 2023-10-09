@@ -14,7 +14,7 @@ class NilaiMahasiswaController extends Controller
      */
     public function index()
     {
-        $nilaiMahasiswa = NilaiMahasiswa::paginate(10);
+        $nilaiMahasiswa = NilaiMahasiswa::all();
         return view('nilaiMahasiswa.index', compact('nilaiMahasiswa'));
     }
 
@@ -25,7 +25,7 @@ class NilaiMahasiswaController extends Controller
     {
         // Anda mungkin perlu mengirimkan data mahasiswa dan kriteria ke tampilan
         $mahasiswaList = User::where('role', 'mahasiswa')->get();
-        $kriteriaList =Kriteria::all();
+        $kriteriaList = Kriteria::all();
 
         return view('nilaiMahasiswa.create', compact('mahasiswaList', 'kriteriaList'));
     }

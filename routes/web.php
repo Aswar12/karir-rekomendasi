@@ -40,7 +40,7 @@ Route::middleware([
     Route::post('/nilaiMahasiswa', [NilaiMahasiswaController::class, 'store'])->name('nilaiMahasiswa.store');
     Route::get('/nilaiMahasiswa-edit-{nilaiMahasiswa}', [NilaiMahasiswaController::class, 'edit'])->name('nilaiMahasiswa.edit');
     Route::put('/nilaiMahasiswa-update-{nilaiMahasiswa}', [NilaiMahasiswaController::class, 'update'])->name('nilaiMahasiswa.update');
-    Route::delete('/nilaiMahasiswa-delete-{nilaiMahasiswa}', [NilaiMahasiswaController::class, 'destroy'])->name('nilaiMahasiswa.destroy');
+    Route::delete('/nilaiMahasiswa-delete-{nilaiMahasiswa}', [NilaiMahasiswaController::class, 'destroy'])->name('nilaiMahasiswa.delete');
     Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
     Route::get('/rekomendasi-create', [RekomendasiController::class, 'create'])->name('rekomendasi.create');
     Route::post('/rekomendasi-store', [RekomendasiController::class, 'store'])->name('rekomendasi.store');
