@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NilaiMahasiswa;
 use Illuminate\Http\Request;
 
 class NilaiMahasiswaController extends Controller
@@ -11,7 +12,8 @@ class NilaiMahasiswaController extends Controller
      */
     public function index()
     {
-        //
+        $nilaiMahasiswa = NilaiMahasiswa::paginate(10);
+        return view('nilaiMahasiswa.index', compact('nilaiMahasiswa'));
     }
 
     /**
