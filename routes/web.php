@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\NilaiMahasiswaController;
+use App\Http\Controllers\RekomendasiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +30,6 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/kriterias', [KriteriaController::class, 'index'])->name('kriterias.index');
+    Route::get('/nilaiMahasiswa', [NilaiMahasiswaController::class, 'index'])->name('nilaiMahasiswa.index');
+    Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
 });
