@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('jurusan')->nullable();
-            $table->string('NIM')->unique()->nullable();
+            $table->string('nim')->unique()->nullable();
             $table->integer('tahun_masuk')->nullable();
         });
     }
@@ -25,7 +25,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('jurusan')->nullable();
-            $table->string('NIM')->unique()->nullable();
+            $table->string('nim')->unique()->nullable();
             $table->integer('tahun_masuk')->nullable();
         });
     }

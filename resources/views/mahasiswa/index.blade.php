@@ -46,7 +46,7 @@
                                 {{ $mahasiswa->name }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $mahasiswa->NIM }}
+                                {{ $mahasiswa->nim }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $mahasiswa->jurusan }}

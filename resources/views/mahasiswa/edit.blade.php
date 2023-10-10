@@ -8,7 +8,7 @@
     <div class="py-10 bg-gray-400 h-auto ">
         <div class="max-w-7xl mx-auto h-auto sm:px-6 lg:px-8">
             <div class="bg-white rounded-xl mt-6 mx-6 overflow-hidden  shadow-xl sm:rounded-lg">
-                <form action="{{ route('mahasiswas.update', $mahasiswas) }}" method="POST" class="my-8 mx-8">
+                <form action="{{ route('mahasiswas.update', $mahasiswas->id) }}" method="POST" class="my-8 mx-8">
                     @csrf
                     @method('PUT')
                     <div class="relative z-0 w-full mb-6 group">
@@ -21,12 +21,12 @@
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nama</label>
                     </div>
                     <div class="relative z-0 w-full mb-6 group">
-                        <input type="text" name={{ $mahasiswas->NIM }} id={{ $mahasiswas->NIM }}
+                        <input type="text" name={{ $mahasiswas->nim }} id={{ $mahasiswas->nim }}
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2
                         border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500
                         focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder='' value="{{ $mahasiswas->NIM }}" />
-                        <label for={{ $mahasiswas->NIM }}
+                        placeholder='' value="{{ $mahasiswas->nim }}" />
+                        <label for={{ $mahasiswas->nim }}
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300
                             transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0
                             peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100

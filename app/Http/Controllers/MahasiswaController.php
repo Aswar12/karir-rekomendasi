@@ -52,12 +52,20 @@ class MahasiswaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $mahasiswas)
+    public function update(Request $request, string $id)
     {
-
-        $mahasiswas->update($request->all());
+        $data = $request->validate([
+            'jurusan' => 'required',
+            'nim' => 'required',
+            'name' => 'required',
+            'tahun_masuk' => 'required',
+        ]);
+        $mahasiswas = User::findOrFail($id);
+        $mahasiswas->update($data);
         return redirect()->route('mahasiswas.index');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
