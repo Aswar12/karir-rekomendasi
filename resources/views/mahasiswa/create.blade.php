@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tambah Kriteria') }}
+            {{ __('Tambah Mahasiswa') }}
         </h2>
     </x-slot>
 
     <div class="py-10 bg-gray-400 h-auto ">
         <div class="max-w-7xl mx-auto h-auto sm:px-6 lg:px-8">
             <div class="bg-white rounded-xl mt-6 mx-6 overflow-hidden  shadow-xl sm:rounded-lg">
-                <form action={{ route('kriterias.store') }} class="my-8 mx-8" method="POST">
+                <form action={{ route('mahasiswas.store') }} class="my-8 mx-8" method="POST">
                     @csrf
                     <div class="relative z-0 w-full mb-6 group">
                         <input type="text" name="nama_kriteria" id="nama_kriteria"
