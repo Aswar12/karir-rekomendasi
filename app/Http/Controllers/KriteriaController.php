@@ -57,10 +57,27 @@ class KriteriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // $kriterias = Kriteria::findOrFail($id);
+        // $kriterias->update($request->all());
+        // return redirect()->route('kriterias.index');
+        $request->validate([
+            'nama_kriteria' => 'required',
+            'bobot' => 'required',
+            
+        ]);
+    
         $kriterias = Kriteria::findOrFail($id);
-        $kriterias->update($request->all());
-        return redirect()->route('kriterias.index');
+    
+        // Menggunakan update bukan create
+        $kriterias->update([
+            'nama_kriteria' => $request->nama_kriteria,
+            'bobot' => $request->bobot,
+        ]);
+        
+        return redirect()->route('kriterias.index')
+            ->with('success', 'Mahasiswa berhasil diupdate');
     }
+    
 
     /**
      * Remove the specified resource from storage.
