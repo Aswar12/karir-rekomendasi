@@ -32,7 +32,8 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/mahasiswas', [MahasiswaController::class, 'index'])->name('mahasiswas.index');
-    Route::get('/mahasiswas-create', [MahasiswaController::class, 'create'])->name('mahasiswas.create');
+    Route::get('/mahasiswas-edit-{mahasiswa}', [MahasiswaController::class, 'edit'])->name('mahasiswas.edit');
+    Route::put('/mahasiswas-update-{mahasiswa}', [MahasiswaController::class, 'update'])->name('mahasiswas.update');
 
 
 
