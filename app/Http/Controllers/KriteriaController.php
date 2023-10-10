@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
 use Illuminate\Http\Request;
+use App\Models\Subcriteria;
 
 class KriteriaController extends Controller
 {
@@ -12,7 +13,8 @@ class KriteriaController extends Controller
      */
     public function index()
     {
-        $kriterias =  Kriteria::all();
+        $kriterias = Kriteria::all();
+        $kriteria = Kriteria::with('subcriteria');
         return view('kriteria.index', compact('kriterias'));
     }
 

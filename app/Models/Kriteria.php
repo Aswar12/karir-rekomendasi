@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Subcriteria;
 
 class Kriteria extends Model
 {
@@ -16,6 +17,12 @@ class Kriteria extends Model
         'updated_at',
         'created_at'
     ];
+
+    public function  subcriteria()
+    {
+
+        return $this->hasMany(Subcriteria::class, 'kriteria_id', 'id');
+    }
 
     public function nilaiMahasiswa()
     {
