@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use PhpParser\Builder\Use_;
 
 class MahasiswaController extends Controller
 {
@@ -45,8 +46,12 @@ class MahasiswaController extends Controller
      */
     public function edit(string $id)
     {
+        // $mahasiswas = User::findOrFail($id);
+        // return view('mahasiswa.edit', compact('mahasiswas'));
         $mahasiswas = User::findOrFail($id);
+      
         return view('mahasiswa.edit', compact('mahasiswas'));
+
     }
 
     /**
@@ -54,16 +59,27 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = $request->validate([
-            'jurusan' => 'required',
-            'nim' => 'required',
+        $request->validate([
             'name' => 'required',
+            'nim' => 'required',
+            'jurusan' => 'required',
             'tahun_masuk' => 'required',
         ]);
+    
         $mahasiswas = User::findOrFail($id);
-        $mahasiswas->update($data);
-        return redirect()->route('mahasiswas.index');
+    
+        // Menggunakan update bukan create
+        $mahasiswas->update([
+            'name' => $request->name,
+            'nim' => $request->nim,
+            'jurusan' => $request->jurusan,
+            'tahun_masuk' => $request->tahun_masuk,
+        ]);
+        
+        return redirect()->route('mahasiswas.index')
+            ->with('success', 'Mahasiswa berhasil diupdate');
     }
+    
 
 
 
