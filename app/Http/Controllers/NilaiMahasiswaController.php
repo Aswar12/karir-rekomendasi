@@ -24,7 +24,7 @@ class NilaiMahasiswaController extends Controller
     public function create()
     {
         // Anda mungkin perlu mengirimkan data mahasiswa dan kriteria ke tampilan
-        $mahasiswaList = User::where('role', 'mahasiswa')->get();
+        $mahasiswaList = User::all();
         $kriteriaList = Kriteria::all();
 
         return view('nilaiMahasiswa.create', compact('mahasiswaList', 'kriteriaList'));
@@ -45,7 +45,7 @@ class NilaiMahasiswaController extends Controller
             'nilai' => $request->nilai,
         ]);
 
-        return redirect()->route('nilaiMahasiswa.create')->with('success', 'Nilai Mahasiswa berhasil ditambahkan.');
+        return redirect()->route('nilaiMahasiswa.index')->with('success', 'Nilai Mahasiswa berhasil ditambahkan.');
     }
 
     /**
@@ -62,18 +62,34 @@ class NilaiMahasiswaController extends Controller
     public function edit(string $id)
     {
         $nilaiMahasiswa = NilaiMahasiswa::findOrFail($id);
-        return view('nilaiMahasiswa.edit', compact('nilaiMahasiswa'));
-    }
+        $mahasiswaList = User::all();
+        $kriteriaList = Kriteria::all();
+        return view('nilaiMahasiswa.edit', compact('nilaiMahasiswa', 'mahasiswaList', 'kriteriaList'));
+}
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'mahasiswa_id' => 'required',
+            'kriteria_id' => 'required',
+            'nilai' => 'required',
+        ]);
+    
         $nilaiMahasiswa = NilaiMahasiswa::findOrFail($id);
-        $nilaiMahasiswa->update($request->all());
-        return redirect()->route('nilaiMahasiswa.index');
+    
+        // Menggunakan update bukan create
+        $nilaiMahasiswa->update([
+            'mahasiswa_id' => $request->mahasiswa_id,
+            'kriteria_id' => $request->kriteria_id,
+            'nilai' => $request->nilai,
+        ]);
+    
+        return redirect()->route('nilaiMahasiswa.index')->with('success', 'Nilai Mahasiswa berhasil diperbarui.');
     }
+    
 
     /**
      * Remove the specified resource from storage.
