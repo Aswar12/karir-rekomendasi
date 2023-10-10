@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\NilaiMahasiswaController;
 use App\Http\Controllers\RekomendasiController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/mahasiswas', [MahasiswaController::class, 'index'])->name('mahasiswas.index');
     Route::get('/kriterias', [KriteriaController::class, 'index'])->name('kriterias.index');
     Route::get('/kriterias-create', [KriteriaController::class, 'create'])->name('kriterias.create');
     Route::post('/kriterias-store', [KriteriaController::class, 'store'])->name('kriterias.store');

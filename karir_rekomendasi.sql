@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Okt 2023 pada 17.14
+-- Waktu pembuatan: 10 Okt 2023 pada 04.50
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.6
 
@@ -95,7 +95,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2023_10_07_003858_add_role_to_users_table', 2),
 (8, '2023_10_07_011510_create_kriterias_table', 3),
 (9, '2023_10_07_011606_create_nilai_mahasiswas_table', 3),
-(10, '2023_10_07_011648_create_rekomendasis_table', 3);
+(10, '2023_10_07_011648_create_rekomendasis_table', 3),
+(11, '2023_10_10_013532_add_columns_to_users_table', 4);
 
 -- --------------------------------------------------------
 
@@ -209,9 +210,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('0ZKQRYpxdDWUAP3QHga4HoDJ89JOw0ydoR1ohxNx', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRnhlZUlvYmNiWHIyVE9tZGdxbWpMbUlZNkF1SVdBa3JiRjh4dFRmZyI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozODoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2tyaXRlcmlhcy1lZGl0LzEiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRpcG5FZG05R1c1L2JTNTNyQ1JRTmdPZU1IVTRiSW1BNDRvOUVNcklmdzBVeU5WTWlTWHNSRyI7fQ==', 1696851792),
-('E9iWSDlRvqVsi399Enp7Qhgqy50fDC25VvZ2ALFA', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiOWxKZE1jYmhpczQwVW5zbHV4ZmdzTlFKd3ppUlFRMnJpdXBWZVd1dyI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3Jla29tZW5kYXNpIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkaXBuRWRtOUdXNS9iUzUzckNSUU5nT2VNSFU0YkltQTQ0bzlFTXJJZncwVXlOVk1pU1hzUkciO30=', 1696862338),
-('y5N4hxCxT1gMzc995oEPSSvE1C3UzxOoStg7T1kY', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiTDFmTlE3NnpoVUFzVllhS3o0YlQwZm1VUjJKZ1hUSGx4N2VobHB3YSI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoxMjM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9rcml0ZXJpYXMtZWRpdC8xPzAuNjE9MC42MSZfbWV0aG9kPVBVVCZfdG9rZW49TDFmTlE3NnpoVUFzVllhS3o0YlQwZm1VUjJKZ1hUSGx4N2VobHB3YSZpdXN0bz1pdXN0b2FzZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJGlwbkVkbTlHVzUvYlM1M3JDUlFOZ09lTUhVNGJJbUE0NG85RU1ySWZ3MFV5TlZNaVNYc1JHIjt9', 1696837044);
+('o15E3lNAFOLvjEcvMeL5S5E1r60XC8810BjuDHQp', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiekFJNkFtVHZEWDJqOVZRa2tHTHczZUNEdTV2TlpDcnF6QlpxVllYayI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMjoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL21haGFzaXN3YXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRpcG5FZG05R1c1L2JTNTNyQ1JRTmdPZU1IVTRiSW1BNDRvOUVNcklmdzBVeU5WTWlTWHNSRyI7fQ==', 1696906173);
 
 -- --------------------------------------------------------
 
@@ -233,15 +232,18 @@ CREATE TABLE `users` (
   `profile_photo_path` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `roles` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'mahasiswa'
+  `roles` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'mahasiswa',
+  `jurusan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `NIM` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tahun_masuk` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`, `roles`) VALUES
-(1, 'ASWAR SUMARLIN', 'aswarthedoctor@gmail.com', NULL, '$2y$10$ipnEdm9GW5/bS53rCRQNgOeMHU4bImA44o9EMrIfw0UyNVMiSXsRG', NULL, NULL, NULL, 'PgDvpflI5IurNFKs8maL1QLk990rhw1yIJCcSgMXLHLem0lTAN5vJ4YIcG5t', NULL, NULL, '2023-10-06 07:01:24', '2023-10-06 07:01:24', 'mahasiswa');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`, `roles`, `jurusan`, `NIM`, `tahun_masuk`) VALUES
+(1, 'ASWAR SUMARLIN', 'aswarthedoctor@gmail.com', NULL, '$2y$10$ipnEdm9GW5/bS53rCRQNgOeMHU4bImA44o9EMrIfw0UyNVMiSXsRG', NULL, NULL, NULL, 'PgDvpflI5IurNFKs8maL1QLk990rhw1yIJCcSgMXLHLem0lTAN5vJ4YIcG5t', NULL, NULL, '2023-10-06 07:01:24', '2023-10-06 07:01:24', 'mahasiswa', 'Teknik Informatika', '20182205083', 2018);
 
 --
 -- Indexes for dumped tables
@@ -308,7 +310,8 @@ ALTER TABLE `sessions`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD UNIQUE KEY `users_nim_unique` (`NIM`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -330,7 +333,7 @@ ALTER TABLE `kriterias`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `nilai_mahasiswas`
