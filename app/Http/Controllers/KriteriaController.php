@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
+use App\Models\Subcriteria;
 use Illuminate\Http\Request;
 
 
@@ -28,10 +29,26 @@ class KriteriaController extends Controller
         $kriterias = Kriteria::all();
         return view('kriteria.create', compact('kriterias'));
     }
+    public function createSub($id)
+    {
+        $kriterias = Kriteria::findOrFail($id);
+        return view('kriteria.create-sub', compact('kriterias'));
+    }
 
     /**
      * Store a newly created resource in storage.
      */
+    public function storeSub(Request $request, $id)
+    {
+        $request->validate([
+            'nama_subkriteria' => 'required',
+            'bobot' => 'required',
+        ]);
+        $data = $request->all();
+        $data['id_kriteria'] = $id;
+        Subcriteria::create($data);
+        return redirect()->route('kriterias.index');
+    }
     public function store(Request $request)
     {
         Kriteria::create($request->all());

@@ -35,6 +35,8 @@ Route::middleware([
     Route::get('/mahasiswas-edit-{mahasiswa}', [MahasiswaController::class, 'edit'])->name('mahasiswas.edit');
     Route::put('/mahasiswas-update-{mahasiswa}', [MahasiswaController::class, 'update'])->name('mahasiswas.update');
 
+    Route::get('/kriterias-sub-create', [KriteriaController::class, 'createSub'])->name('kriterias-sub.create');
+    Route::post('/kriterias-sub-store', [KriteriaController::class, 'storeSub'])->name('kriterias-sub.store');
 
 
     Route::get('/kriterias', [KriteriaController::class, 'index'])->name('kriterias.index');
