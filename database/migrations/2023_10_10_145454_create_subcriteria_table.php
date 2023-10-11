@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subcriteria', function (Blueprint $table) {
+        Schema::create('subcriterias', function (Blueprint $table) {
             $table->id();
+            $table->BigInteger('id_kriteria')->nullable();
             $table->string('nama_subkriteria');
             $table->float('bobot');
             $table->timestamps();

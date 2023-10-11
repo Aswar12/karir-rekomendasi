@@ -25,6 +25,9 @@
                                 Bobot
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Sub Kriteria
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Action
                             </th>
                         </tr>
@@ -41,6 +44,11 @@
                             </td>
                             <td class="px-6 py-4">
                                 {{ $kriteria->bobot }}
+                            </td>
+                            <td class="px-6 py-4">
+                                @foreach ($kriteria->subcriteria as $subkriteria )
+                                {{ $subkriteria->nama_subkriteria }}
+                                @endforeach
                             </td>
                             <td class="px-6 py-4">
                                 <div class="row flex-shrink-0">

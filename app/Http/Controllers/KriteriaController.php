@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
 use Illuminate\Http\Request;
-use App\Models\Subcriteria;
+
 
 class KriteriaController extends Controller
 {
@@ -13,9 +13,11 @@ class KriteriaController extends Controller
      */
     public function index()
     {
-        $kriterias = Kriteria::all();
-        $kriteria = Kriteria::with('subcriteria');
+
+        $kriterias = Kriteria::with('subcriteria')->get();
         return view('kriteria.index', compact('kriterias'));
+
+        printf($kriterias);
     }
 
     /**
@@ -63,21 +65,21 @@ class KriteriaController extends Controller
         $request->validate([
             'nama_kriteria' => 'required',
             'bobot' => 'required',
-            
+
         ]);
-    
+
         $kriterias = Kriteria::findOrFail($id);
-    
+
         // Menggunakan update bukan create
         $kriterias->update([
             'nama_kriteria' => $request->nama_kriteria,
             'bobot' => $request->bobot,
         ]);
-        
+
         return redirect()->route('kriterias.index')
             ->with('success', 'Mahasiswa berhasil diupdate');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
