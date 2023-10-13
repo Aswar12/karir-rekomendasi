@@ -9,7 +9,8 @@ class Subcriteria extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nama_kriteria',
+        'nama_subkriteria',
+        'id_kriteria',
         'bobot',
         'updated_at',
         'created_at'

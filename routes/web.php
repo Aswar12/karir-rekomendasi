@@ -35,9 +35,11 @@ Route::middleware([
     Route::get('/mahasiswas-edit-{mahasiswa}', [MahasiswaController::class, 'edit'])->name('mahasiswas.edit');
     Route::put('/mahasiswas-update-{mahasiswa}', [MahasiswaController::class, 'update'])->name('mahasiswas.update');
 
-    Route::get('/kriterias-sub-create', [KriteriaController::class, 'createSub'])->name('kriterias-sub.create');
-    Route::post('/kriterias-sub-store', [KriteriaController::class, 'storeSub'])->name('kriterias-sub.store');
-
+    Route::get('/kriterias-sub-create{kriteria}', [KriteriaController::class, 'createSub'])->name('kriterias-sub.create');
+    Route::post('/kriterias-sub-store{kriteria}', [KriteriaController::class, 'storeSub'])->name('kriterias-sub.store');
+    Route::get('/kriterias-sub-edit{kriteria}', [KriteriaController::class, 'editSub'])->name('kriterias-sub.edit');
+    Route::put('/kriterias-sub-update{kriteria}', [KriteriaController::class, 'updateSub'])->name('kriterias-sub.update');
+    Route::delete('/kriterias-sub-delete-{kriteria}', [KriteriaController::class, 'destroySub'])->name('kriterias-sub.delete');
 
     Route::get('/kriterias', [KriteriaController::class, 'index'])->name('kriterias.index');
     Route::get('/kriterias-create', [KriteriaController::class, 'create'])->name('kriterias.create');
