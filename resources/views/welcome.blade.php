@@ -77,7 +77,7 @@
                 <a class="nav-link scrollto" href="{{ route('login') }}">Login</a></li>
                 <li>
                     @if (Route::has('register'))
-                    <a class="getstarted scrollto" href=""{{ route('register') }}">Register</a>
+                    <a class="getstarted scrollto" href="{{ route('register') }}">Register</a>
                     @endif
                     @endauth
                 </li>
