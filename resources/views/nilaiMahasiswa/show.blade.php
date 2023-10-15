@@ -42,11 +42,11 @@
                             <td class="px-6 py-4">
 
                             </td>
-                            {{-- @foreach ($nilaimahasiswa->nilaiMahasiswa-> as $kriterias)
+                            @foreach ($nilaiMahasiswa->nilaimahasiswa-> as $kriterias)
                             <td class="px-6 py-4">
                                 {{ $kriterias->nama_kriteria }}
                             </td>
-                            @endforeach --}}
+                            @endforeach
                             {{-- <td class="px-6 py-4">
                                 {{ $nilai->nilaiMahasiswa->kriteria }}
                             </td> --}}

@@ -55,7 +55,6 @@ class NilaiMahasiswaController extends Controller
 
     {
         $nilaimahasiswa = User::with('nilaiMahasiswa')->find($mahasiswa);
-        dd($nilaimahasiswa);
         return view('nilaiMahasiswa.show', compact('nilaimahasiswa',));
     }
 
