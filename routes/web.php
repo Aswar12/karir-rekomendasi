@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboardmhs;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\NilaiMahasiswaController;
@@ -68,4 +69,5 @@ Route::middleware([
     Route::get('/rekomendasi-edit-{rekomendasi}', [RekomendasiController::class, 'edit'])->name('rekomendasi.edit');
     Route::put('/rekomendasi-update-{rekomendasi}', [RekomendasiController::class, 'update'])->name('rekomendasi.update');
     Route::delete('/rekomendasi-delete-{rekomendasi}', [RekomendasiController::class, 'destroy'])->name('rekomendasi.delete');
+    Route::get('/dbmahasiswa', [Dashboardmhs::class, 'index'])->name('dashboardmhs.index');
 });
