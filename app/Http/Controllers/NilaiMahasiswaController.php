@@ -51,11 +51,12 @@ class NilaiMahasiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $mahasiswa)
+    public function show(String $mahasiswa)
 
     {
-        $nilaiMahasiswa = NilaiMahasiswa::with('mahasiswa')->where('mahasiswa_id', $mahasiswa->id)->get();
-        return view('nilaiMahasiswa.show', compact('nilaimahasiswa'));
+        $nilaimahasiswa = User::with('nilaiMahasiswa')->find($mahasiswa);
+        dd($nilaimahasiswa);
+        return view('nilaiMahasiswa.show', compact('nilaimahasiswa',));
     }
 
     /**

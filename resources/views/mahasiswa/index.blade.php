@@ -78,7 +78,7 @@
                                             </svg><span class="mx-1">Hapus</span>
                                         </button>
                                     </form>
-                                    <a href="{{ route('nilaiMahasiswa.show',$mahasiswa ) }}"
+                                    <a href="{{ route('nilaiMahasiswa.show',$mahasiswa->id ) }}"
                                         class="inline-flex px-2 py-2 mx-1  font-bold text-white bg-green-500 rounded hover:bg-green-700">
                                         <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
