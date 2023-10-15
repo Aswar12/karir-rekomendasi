@@ -45,9 +45,8 @@ class KriteriaController extends Controller
         ]);
         $request['bobot'] = str_replace(',', '.', $request->bobot);
         $data['bobot'] = floatval($request->bobot);
-        $data['id_kriteria'] = $id;
         $data = $request->all();
-
+        $data['id_kriteria'] = $id;
         Subcriteria::create($data);
         return redirect()->route('kriterias.index');
     }

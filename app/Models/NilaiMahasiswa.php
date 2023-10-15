@@ -16,23 +16,23 @@ class NilaiMahasiswa extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'mahasiswa_id', 'id');
     }
 
 
     public function kriteria()
     {
-        return $this->belongsTo(Kriteria::class);
+        return $this->belongsTo(Kriteria::class, 'kriteria_id', 'id');
     }
 
     public function subcriteria()
     {
 
-        return $this->belongsTo(Subcriteria::class);
+        return $this->belongsTo(Subcriteria::class, 'subcriteria_id', 'id');
     }
 
     public function rekomendasi()
     {
-        return $this->hasMany(Rekomendasi::class);
+        return $this->hasMany(Rekomendasi::class, 'rekomendasi_id', 'id');
     }
 }

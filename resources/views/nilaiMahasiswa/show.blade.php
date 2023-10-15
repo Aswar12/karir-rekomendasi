@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Nilai' ) }} <b> {{ $nilaimahasiswa->name }}
+            {{ __('Nilai' ) }} <b> {{ $user->name }}
         </h2>
     </x-slot>
 
@@ -33,25 +33,18 @@
                     <tbody>
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
+                            @foreach($nilais as $nilait)
                             <td class="px-6 py-4">
-
+                                {{ $nilait->kriteria->nama_kriteria }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $nilait->subcriteria->nama_subkriteria }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $nilait->nilai }}
                             </td>
 
-
-                            <td class="px-6 py-4">
-
-                            </td>
-                            @foreach ($nilaiMahasiswa->nilaimahasiswa-> as $kriterias)
-                            <td class="px-6 py-4">
-                                {{ $kriterias->nama_kriteria }}
-                            </td>
                             @endforeach
-                            {{-- <td class="px-6 py-4">
-                                {{ $nilai->nilaiMahasiswa->kriteria }}
-                            </td> --}}
-                            <td class="px-6 py-4">
-
                             <td class="px-6 py-4">
                                 <div class="row flex-shrink-0">
 

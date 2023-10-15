@@ -54,8 +54,9 @@ class NilaiMahasiswaController extends Controller
     public function show(String $mahasiswa)
 
     {
-        $nilaimahasiswa = User::with('nilaiMahasiswa')->find($mahasiswa);
-        return view('nilaiMahasiswa.show', compact('nilaimahasiswa',));
+        $user = User::findOrFail($mahasiswa);
+        $nilais = NilaiMahasiswa::with(['kriteria', 'subcriteria'])->where('mahasiswa_id', $mahasiswa)->get();
+        return view('nilaiMahasiswa.show', compact('nilais', 'user'));
     }
 
     /**
