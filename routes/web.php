@@ -34,7 +34,7 @@ Route::middleware([
     Route::get('/mahasiswas', [MahasiswaController::class, 'index'])->name('mahasiswas.index');
     Route::get('/mahasiswas-edit-{mahasiswa}', [MahasiswaController::class, 'edit'])->name('mahasiswas.edit');
     Route::put('/mahasiswas-update-{mahasiswa}', [MahasiswaController::class, 'update'])->name('mahasiswas.update');
-
+    Route::delete('/mahasiswas-delete-{mahasiswa}', [MahasiswaController::class, 'destroy'])->name('mahasiswas.delete');
     Route::get('/kriterias-sub-create{kriteria}', [KriteriaController::class, 'createSub'])->name('kriterias-sub.create');
     Route::post('/kriterias-sub-store{kriteria}', [KriteriaController::class, 'storeSub'])->name('kriterias-sub.store');
     Route::get('/kriterias-sub-edit{kriteria}', [KriteriaController::class, 'editSub'])->name('kriterias-sub.edit');
@@ -47,12 +47,21 @@ Route::middleware([
     Route::get('/kriterias-edit-{kriteria}', [KriteriaController::class, 'edit'])->name('kriterias.edit');
     Route::put('/kriterias-update-{kriteria}', [KriteriaController::class, 'update'])->name('kriterias.update');
     Route::delete('/kriterias-delete-{kriteria}', [KriteriaController::class, 'destroy'])->name('kriterias.delete');
+
+
+
+    Route::get('/nilaiMahasiswa-show-{mahasiswa}', [NilaiMahasiswaController::class, 'show'])->name('nilaiMahasiswa.show');
     Route::get('/nilaiMahasiswa', [NilaiMahasiswaController::class, 'index'])->name('nilaiMahasiswa.index');
     Route::get('/nilaiMahasiswa-create', [NilaiMahasiswaController::class, 'create'])->name('nilaiMahasiswa.create');
     Route::post('/nilaiMahasiswa', [NilaiMahasiswaController::class, 'store'])->name('nilaiMahasiswa.store');
     Route::get('/nilaiMahasiswa-edit-{nilaiMahasiswa}', [NilaiMahasiswaController::class, 'edit'])->name('nilaiMahasiswa.edit');
     Route::put('/nilaiMahasiswa-update-{nilaiMahasiswa}', [NilaiMahasiswaController::class, 'update'])->name('nilaiMahasiswa.update');
     Route::delete('/nilaiMahasiswa-delete-{nilaiMahasiswa}', [NilaiMahasiswaController::class, 'destroy'])->name('nilaiMahasiswa.delete');
+
+
+
+
+
     Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
     Route::get('/rekomendasi-create', [RekomendasiController::class, 'create'])->name('rekomendasi.create');
     Route::post('/rekomendasi-store', [RekomendasiController::class, 'store'])->name('rekomendasi.store');

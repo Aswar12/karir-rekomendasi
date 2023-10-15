@@ -40,10 +40,10 @@
                                 {{ $index + 1 }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $nilai->mahasiswa_id }}
+                                {{ $nilai->user->name }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $nilai->kriteria_id }}
+                                {{ $nilai->kriteria->nama_kriteria }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $nilai->nilai }}
@@ -71,18 +71,94 @@
                                             </svg><span class="mx-1">Hapus</span>
                                         </button>
                                     </form>
+                                    <a href="{{ route('nilaiMahasiswa.show', $nilai->mahasiswa_id ) }}"
+                                        class="inline-flex px-2 py-2 mx-1  font-bold text-white bg-green-500 rounded hover:bg-green-700">
+                                        <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path
+                                                    d="M11 8C11 7.44772 11.4477 7 12 7C12.5523 7 13 7.44772 13 8V11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H13V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V13H8C7.44771 13 7 12.5523 7 12C7 11.4477 7.44772 11 8 11H11V8Z"
+                                                    fill="#0F0F0F"></path>
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12ZM3.00683 12C3.00683 16.9668 7.03321 20.9932 12 20.9932C16.9668 20.9932 20.9932 16.9668 20.9932 12C20.9932 7.03321 16.9668 3.00683 12 3.00683C7.03321 3.00683 3.00683 7.03321 3.00683 12Z"
+                                                    fill="#0F0F0F"></path>
+                                            </g>
+                                        </svg><span class="mx-1">Nilai</span>
+                                    </a>
                                 </div>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-                {{-- <div class="p-3 bg-white">
-                    {{ $nilaiMahasiswa->links() }}
-                </div> --}}
+
             </div>
         </div>
     </div>
 
 
 </x-app-layout>
+
+{{-- <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Nilai Mahasiswa') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-10 bg-gray-400 ">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
+            <div class="bg-white rounded-xl mt-6 overflow-hidden  shadow-xl sm:rounded-lg">
+
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                No
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Nama Mahasiswa
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Kriteria
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Nilai
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Sub Kriteria
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($nilaiMahasiswa as $index => $nilai)
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="px-6 py-4">
+                                {{ $index+1 }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $nilai->mahasiswa_id }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $nilai->kriteria->nama_kriteria }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $nilai->nilai }}
+                            </td>
+                            <td class="px-6 py-4">
+                                @foreach ($nilai->kriteria->subcriteria as $subkriteria)
+                                <span>{{ $subkriteria->nama_subkriteria }}</span>
+                                @endforeach
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</x-app-layout> --}}

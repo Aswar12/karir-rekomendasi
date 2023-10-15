@@ -51,9 +51,11 @@ class NilaiMahasiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $mahasiswa)
+
     {
-        //
+        $nilaiMahasiswa = NilaiMahasiswa::with('mahasiswa')->where('mahasiswa_id', $mahasiswa->id)->get();
+        return view('nilaiMahasiswa.show', compact('nilaimahasiswa'));
     }
 
     /**
@@ -65,7 +67,7 @@ class NilaiMahasiswaController extends Controller
         $mahasiswaList = User::all();
         $kriteriaList = Kriteria::all();
         return view('nilaiMahasiswa.edit', compact('nilaiMahasiswa', 'mahasiswaList', 'kriteriaList'));
-}
+    }
 
     /**
      * Update the specified resource in storage.
@@ -77,19 +79,19 @@ class NilaiMahasiswaController extends Controller
             'kriteria_id' => 'required',
             'nilai' => 'required',
         ]);
-    
+
         $nilaiMahasiswa = NilaiMahasiswa::findOrFail($id);
-    
+
         // Menggunakan update bukan create
         $nilaiMahasiswa->update([
             'mahasiswa_id' => $request->mahasiswa_id,
             'kriteria_id' => $request->kriteria_id,
             'nilai' => $request->nilai,
         ]);
-    
+
         return redirect()->route('nilaiMahasiswa.index')->with('success', 'Nilai Mahasiswa berhasil diperbarui.');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.

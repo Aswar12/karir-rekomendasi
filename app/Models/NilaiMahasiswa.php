@@ -13,23 +13,24 @@ class NilaiMahasiswa extends Model
         'kriteria_id',
         'nilai',
     ];
- 
+
     public function user()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(User::class, 'id', 'mahasiswa_id');
+    }
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(User::class, 'mahasiswa_id', 'id');
     }
 
     public function kriteria()
     {
         return $this->belongsTo(Kriteria::class);
     }
-    
+
     public function rekomendasi()
     {
         return $this->hasMany(Rekomendasi::class);
     }
-
-    
-    
-    
 }

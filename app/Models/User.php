@@ -61,4 +61,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function nilaiMahasiswa()
+    {
+        return $this->hasMany(NilaiMahasiswa::class, 'id', 'mahasiswa_id');
+    }
 }
