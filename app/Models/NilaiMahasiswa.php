@@ -11,6 +11,7 @@ class NilaiMahasiswa extends Model
     protected $fillable = [
         'mahasiswa_id',
         'kriteria_id',
+        'subcriteria_id',
         'nilai',
     ];
 

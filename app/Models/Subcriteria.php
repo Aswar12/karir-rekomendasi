@@ -18,6 +18,6 @@ class Subcriteria extends Model
 
     public function kriteria()
     {
-        return $this->belongsTo(Kriteria::class, 'id', 'id_kriteria');
+        return $this->belongsTo(Kriteria::class, 'id_kriteria', 'id');
     }
 }

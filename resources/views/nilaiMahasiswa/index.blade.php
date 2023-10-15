@@ -7,9 +7,7 @@
 
     <div class="py-10 bg-gray-400 ">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
-            <a href={{ route('nilaiMahasiswa.create') }}
-                class="text-gray-700  hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"><Span>
-                </Span> Tambah</a>
+           
             <div class="bg-white rounded-xl mt-6 overflow-hidden  shadow-xl sm:rounded-lg">
 
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -23,6 +21,9 @@
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Kriteria
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Subcriteria
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Nilai
@@ -46,7 +47,11 @@
                                 {{ $nilai->kriteria->nama_kriteria }}
                             </td>
                             <td class="px-6 py-4">
+                                {{ $nilai->subcriteria->nama_subkriteria }}
+                            </td>
+                            <td class="px-6 py-4">
                                 {{ $nilai->nilai }}
+                            </td>
                             <td class="px-6 py-4">
                                 <div class="row flex-shrink-0">
 

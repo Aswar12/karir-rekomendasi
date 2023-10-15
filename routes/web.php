@@ -53,11 +53,12 @@ Route::middleware([
 
     Route::get('/nilaiMahasiswa-show-{mahasiswa}', [NilaiMahasiswaController::class, 'show'])->name('nilaiMahasiswa.show');
     Route::get('/nilaiMahasiswa', [NilaiMahasiswaController::class, 'index'])->name('nilaiMahasiswa.index');
-    Route::get('/nilaiMahasiswa-create', [NilaiMahasiswaController::class, 'create'])->name('nilaiMahasiswa.create');
+    Route::get('/nilaiMahasiswa-create-{id}', [NilaiMahasiswaController::class, 'create'])->name('nilaiMahasiswa.create');
     Route::post('/nilaiMahasiswa', [NilaiMahasiswaController::class, 'store'])->name('nilaiMahasiswa.store');
     Route::get('/nilaiMahasiswa-edit-{nilaiMahasiswa}', [NilaiMahasiswaController::class, 'edit'])->name('nilaiMahasiswa.edit');
     Route::put('/nilaiMahasiswa-update-{nilaiMahasiswa}', [NilaiMahasiswaController::class, 'update'])->name('nilaiMahasiswa.update');
     Route::delete('/nilaiMahasiswa-delete-{nilaiMahasiswa}', [NilaiMahasiswaController::class, 'destroy'])->name('nilaiMahasiswa.delete');
+    Route::get('/nilaiMahasiswa-search', [NilaiMahasiswaController::class, 'search'])->name('nilaiMahasiswa.search');
 
 
 

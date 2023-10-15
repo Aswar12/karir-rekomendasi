@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
 use App\Models\NilaiMahasiswa;
+use App\Models\Subcriteria;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -21,14 +22,24 @@ class NilaiMahasiswaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $id)
     {
         // Anda mungkin perlu mengirimkan data mahasiswa dan kriteria ke tampilan
-        $mahasiswaList = User::all();
-        $kriteriaList = Kriteria::all();
+        $user = User::findOrFail($id);
 
-        return view('nilaiMahasiswa.create', compact('mahasiswaList', 'kriteriaList'));
+        $kriteriaList = Kriteria::all();
+        $SubcriteriaList = Subcriteria::all();
+
+        return view('nilaiMahasiswa.create', compact('user', 'kriteriaList', 'SubcriteriaList'));
     }
+
+    public function search(Request $request) 
+    {
+        $search = $request->get('search');
+        $nilaiMahasiswa = NilaiMahasiswa::where('mahasiswa_id', 'like', '%' . $search . '%')->paginate(5);
+        return view('nilaiMahasiswa.index', compact('nilaiMahasiswa'));
+    }
+
 
     // Simpan data dari formulir ke database
     public function store(Request $request)
@@ -36,12 +47,14 @@ class NilaiMahasiswaController extends Controller
         $request->validate([
             'mahasiswa_id' => 'required',
             'kriteria_id' => 'required',
+            'subcriteria_id' => 'required', // tambahkan 'subcriteria_id
             'nilai' => 'required',
         ]);
 
         NilaiMahasiswa::create([
             'mahasiswa_id' => $request->mahasiswa_id,
             'kriteria_id' => $request->kriteria_id,
+            'subcriteria_id' => $request->subcriteria_id, // tambahkan 'subcriteria_id
             'nilai' => $request->nilai,
         ]);
 
@@ -54,9 +67,10 @@ class NilaiMahasiswaController extends Controller
     public function show(String $mahasiswa)
 
     {
+        $nilaiMahasiswa = NilaiMahasiswa::where('mahasiswa_id', $mahasiswa)->get();
         $user = User::findOrFail($mahasiswa);
         $nilais = NilaiMahasiswa::with(['kriteria', 'subcriteria'])->where('mahasiswa_id', $mahasiswa)->get();
-        return view('nilaiMahasiswa.show', compact('nilais', 'user'));
+        return view('nilaiMahasiswa.show', compact('nilais', 'user', 'nilaiMahasiswa'));
     }
 
     /**
