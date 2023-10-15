@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rekomendasi;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RekomendasiController extends Controller
@@ -12,7 +13,7 @@ class RekomendasiController extends Controller
      */
     public function index()
     {
-        $rekomendasis = Rekomendasi::all()->with('user');
+        $rekomendasis = Rekomendasi::with('user')->get();
         return view('rekomendasi.index', compact('rekomendasis'));
     }
 
