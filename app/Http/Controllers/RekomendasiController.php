@@ -25,38 +25,58 @@ class RekomendasiController extends Controller
     public function hitungNilaiAlternatif()
     {
         // Ambil semua nilai mahasiswa dari database
-        $nilaiMahasiswas = NilaiMahasiswa::all();
+        $nilaiMahasiswa = NilaiMahasiswa::all();
 
-        // Ambil bobot dari tabel kriteria dan subkriteria
+        // Ambil bobot dari tabel kriteria
         $bobotKriteria = Kriteria::pluck('bobot', 'id')->toArray();
-        $bobotSubkriteria = Subcriteria::pluck('bobot', 'id')->toArray();
 
         // Loop melalui setiap nilai mahasiswa
-        foreach ($nilaiMahasiswas as $nilai) {
+        foreach ($nilaiMahasiswa as $nilai) {
             $skorPositif = 0;
             $skorNegatif = 0;
 
             // Hitung skor positif
-            foreach ($nilai->toArray() as $kriteria_id => $bobot) {
-                if ($kriteria_id != 'mahasiswa_id') {
-                    $skorPositif += pow($bobot, 2) * $bobotKriteria[$kriteria_id];
+            foreach ($nilai->toArray() as $kriteriaId => $nilaiKriteria) {
+                if ($kriteriaId != 'mahasiswa_id') {
+                    if (isset($bobotKriteria[$kriteriaId])) {
+                        $skorPositif += pow($nilaiKriteria, 2) * $bobotKriteria[$kriteriaId];
+                    }
                 }
             }
 
             // Hitung skor negatif
-            foreach ($nilai->toArray() as $kriteria_id => $bobot) {
-                if ($kriteria_id != 'mahasiswa_idid') {
-                    $skorNegatif += pow($bobot, 2) * $bobotSubkriteria[$kriteria_id];
+            foreach ($nilai->toArray() as $kriteriaId => $nilaiKriteria) {
+                if ($kriteriaId != 'mahasiswa_id') {
+                    if (isset($bobotKriteria[$kriteriaId])) {
+                        $skorNegatif += pow($nilaiKriteria * -1, 2) * $bobotKriteria[$kriteriaId];
+                    }
                 }
             }
 
-            // Simpan skor alternatif ke dalam database
+            // Periksa nilai skor negatif
+            if ($skorNegatif == 0) {
+                $skorNegatif = 0.00001;
+            }
+
+            // Hitung skor alternatif
             $skorAlternatif = sqrt($skorPositif) / (sqrt($skorPositif) + sqrt($skorNegatif));
             $nilai->skor_alternatif = $skorAlternatif;
             $nilai->save();
         }
 
         return redirect()->route('rekomendasi.index'); // Ganti dengan rute yang sesuai
+    }
+
+    public function getRekomendasi()
+    {
+        // Ambil semua nilai mahasiswa dari database
+        $nilaiMahasiswa = NilaiMahasiswa::all();
+
+        // Urutkan alternatif berdasarkan nilai preferensi
+        $nilaiMahasiswa = $nilaiMahasiswa->sortByDesc('skor_alternatif');
+
+        // Kembalikan daftar alternatif yang telah diurutkan
+        return view('rekomendasi', compact('nilaiMahasiswa'));
     }
 
 
