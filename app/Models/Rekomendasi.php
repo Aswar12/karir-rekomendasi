@@ -15,7 +15,7 @@ class Rekomendasi extends Model
 
     public function nilaiMahasiswa()
     {
-        return $this->belongsTo(NilaiMahasiswa::class);
+        return $this->belongsTo(NilaiMahasiswa::class, 'mahasiswa_id', 'id');
     }
 
     public function kriteria()
@@ -25,6 +25,6 @@ class Rekomendasi extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'mahasiswa_id', 'id');
     }
 }

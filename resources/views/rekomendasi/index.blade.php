@@ -19,10 +19,13 @@
                                 No
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Kriteria
+                                NIM
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Bobot
+                                Mahasiswa
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Skor Alternatif
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Action
@@ -37,10 +40,13 @@
                                 {{ $index+1 }}
                             </td>
                             <td class="px-6 py-4">
+                                {{ $rekomendasi->user->nim }}
+                            </td>
+                            <td class="px-6 py-4">
                                 {{ $rekomendasi->user->name }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $rekomendasi->bobot }}
+                                {{ $re }}
                             </td>
                             <td class="px-6 py-4">
                                 <div class="row flex-shrink-0">
