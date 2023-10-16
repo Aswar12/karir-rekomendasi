@@ -7,7 +7,7 @@
 
     <div class="py-10 bg-gray-400 ">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
-           
+
             <div class="bg-white rounded-xl mt-6 overflow-hidden  shadow-xl sm:rounded-lg">
 
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -46,9 +46,15 @@
                             <td class="px-6 py-4">
                                 {{ $nilai->kriteria->nama_kriteria }}
                             </td>
+                            @if ($nilai->subcriteria !== null)
                             <td class="px-6 py-4">
                                 {{ $nilai->subcriteria->nama_subkriteria }}
                             </td>
+                            @else
+                            <td class="px-6 py-4">
+                                Data Subcriteria tidak ada
+                            </td>
+                            @endif
                             <td class="px-6 py-4">
                                 {{ $nilai->nilai }}
                             </td>

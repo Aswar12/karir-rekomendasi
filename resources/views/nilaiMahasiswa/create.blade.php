@@ -8,9 +8,9 @@
     <div class="py-10 bg-gray-400 h-auto ">
         <div class="max-w-7xl mx-auto h-auto sm:px-6 lg:px-8">
             <div class="bg-white rounded-xl mt-6 mx-6 overflow-hidden shadow-xl sm:rounded-lg">
-                <form action={{ route('nilaiMahasiswa.store') }} class="my-8 mx-8" method="POST">
+                <form action={{ route('nilaiMahasiswa.store' ,$user->id) }} class="my-8 mx-8" method="POST">
                     @csrf
-{{-- 
+                    {{--
                     <div class="relative z-0 w-full mb-6 group">
                         <select name="mahasiswa_id" id="mahasiswa_id"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">

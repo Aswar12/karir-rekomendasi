@@ -13,6 +13,7 @@ class NilaiMahasiswa extends Model
         'kriteria_id',
         'subcriteria_id',
         'nilai',
+        'skor_alternatif'
     ];
 
     public function user()

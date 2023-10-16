@@ -11,6 +11,7 @@ class Rekomendasi extends Model
     protected $fillable = [
         'mahasiswa_id',
         'total_skor',
+
     ];
 
     public function nilaiMahasiswa()

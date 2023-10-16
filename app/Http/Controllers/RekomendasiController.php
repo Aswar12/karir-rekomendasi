@@ -18,51 +18,41 @@ class RekomendasiController extends Controller
     public function index()
     {
         $rekomendasis = Rekomendasi::with('user')->get();
-        $hitungnilai = $this->hitungNilaiAlternatif();
-        return view('rekomendasi.index', compact('rekomendasis', 'hitungnilai'));
+        $nilaiMahasiswa = NilaiMahasiswa::all();
+        $this->hitungNilaiAlternatif();
+        return view('rekomendasi.index', compact('rekomendasis', 'nilaiMahasiswa'));
     }
 
     public function hitungNilaiAlternatif()
     {
-        // Ambil semua nilai mahasiswa dari database
         $nilaiMahasiswa = NilaiMahasiswa::all();
 
-        // Ambil bobot dari tabel kriteria
+        // Ambil bobot kriteria dan bobot subcriteria
         $bobotKriteria = Kriteria::pluck('bobot', 'id')->toArray();
+        $bobotSubcriteria = Subcriteria::pluck('bobot', 'id')->toArray();
+        $skorPositif = null;
+        $skorNegatif = null;
+        // Hitung skor positif dan skor negatif
+        foreach ($nilaiMahasiswa as $nilaiMahasiswa) {
+            // Ambil nilai subcriteria dari database
+            $subcriteria = Subcriteria::where('id', $nilaiMahasiswa->subcriteria_id)->first();
 
-        // Loop melalui setiap nilai mahasiswa
-        foreach ($nilaiMahasiswa as $nilai) {
-            $skorPositif = 0;
-            $skorNegatif = 0;
+            $nilaiSubcriteria = $nilaiMahasiswa->nilai;
+            $bobotKriteria = $bobotKriteria[$nilaiMahasiswa->kriteria_id];
+            $bobotSubcriteria = $bobotSubcriteria[$subcriteria->subcriteria_id];
 
-            // Hitung skor positif
-            foreach ($nilai->toArray() as $kriteriaId => $nilaiKriteria) {
-                if ($kriteriaId != 'mahasiswa_id') {
-                    if (isset($bobotKriteria[$kriteriaId])) {
-                        $skorPositif += pow($nilaiKriteria, 2) * $bobotKriteria[$kriteriaId];
-                    }
-                }
-            }
-
-            // Hitung skor negatif
-            foreach ($nilai->toArray() as $kriteriaId => $nilaiKriteria) {
-                if ($kriteriaId != 'mahasiswa_id') {
-                    if (isset($bobotKriteria[$kriteriaId])) {
-                        $skorNegatif += pow($nilaiKriteria * -1, 2) * $bobotKriteria[$kriteriaId];
-                    }
-                }
-            }
-
-            // Periksa nilai skor negatif
-            if ($skorNegatif == 0) {
-                $skorNegatif = 0.00001;
-            }
-
-            // Hitung skor alternatif
-            $skorAlternatif = sqrt($skorPositif) / (sqrt($skorPositif) + sqrt($skorNegatif));
-            $nilai->skor_alternatif = $skorAlternatif;
-            $nilai->save();
+            $skorPositif += pow($nilaiSubcriteria * $bobotKriteria * $bobotSubcriteria, 2);
+            $skorNegatif += pow($nilaiSubcriteria * -1 * $bobotKriteria * $bobotSubcriteria, 2);
         }
+
+        // Hitung skor alternatif
+        $skorAlternatif = sqrt($skorPositif) / (sqrt($skorPositif) + sqrt($skorNegatif));
+
+        // Hitung skor alternatif
+        $skorAlternatif = sqrt($skorPositif) / (sqrt($skorPositif) + sqrt($skorNegatif));
+        $nilaiMahasiswa->skor_alternatif = $skorAlternatif;
+        $nilaiMahasiswa->save();
+
 
         return redirect()->route('rekomendasi.index'); // Ganti dengan rute yang sesuai
     }
@@ -76,7 +66,7 @@ class RekomendasiController extends Controller
         $nilaiMahasiswa = $nilaiMahasiswa->sortByDesc('skor_alternatif');
 
         // Kembalikan daftar alternatif yang telah diurutkan
-        return view('rekomendasi', compact('nilaiMahasiswa'));
+        return view('rekomendasi.index', compact('nilaiMahasiswa'));
     }
 
 

@@ -33,7 +33,7 @@ class NilaiMahasiswaController extends Controller
         return view('nilaiMahasiswa.create', compact('user', 'kriteriaList', 'SubcriteriaList'));
     }
 
-    public function search(Request $request) 
+    public function search(Request $request)
     {
         $search = $request->get('search');
         $nilaiMahasiswa = NilaiMahasiswa::where('mahasiswa_id', 'like', '%' . $search . '%')->paginate(5);
@@ -42,19 +42,24 @@ class NilaiMahasiswaController extends Controller
 
 
     // Simpan data dari formulir ke database
-    public function store(Request $request)
+    public function store(Request $request, string $id)
     {
         $request->validate([
-            'mahasiswa_id' => 'required',
-            'kriteria_id' => 'required',
-            'subcriteria_id' => 'required', // tambahkan 'subcriteria_id
+
+            'kriteria_id' => 'required', // tambahkan 'subcriteria_id
             'nilai' => 'required',
         ]);
 
+        if ($request->subcriteria_id == null) {
+            $sub_id = null;
+        } else {
+            $sub_id = $request->subcriteria_id;
+        }
+
         NilaiMahasiswa::create([
-            'mahasiswa_id' => $request->mahasiswa_id,
+            'mahasiswa_id' => $id,
             'kriteria_id' => $request->kriteria_id,
-            'subcriteria_id' => $request->subcriteria_id, // tambahkan 'subcriteria_id
+            'subcriteria_id' => $sub_id, // tambahkan 'subcriteria_id
             'nilai' => $request->nilai,
         ]);
 
