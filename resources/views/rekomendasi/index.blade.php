@@ -25,7 +25,7 @@
                                 Mahasiswa
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Skor Alternatif
+                                Total Skor Alternatif
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Action
@@ -33,7 +33,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($nilaiMahasiswa as $index => $rekomendasi )
+                        @foreach ($rekomendasis as $index => $rekomendasi )
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">
@@ -46,7 +46,7 @@
                                 {{ $rekomendasi->user->name }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $rekomendasi->skor_alternatif }}
+                                {{ $rekomendasi->total_skor }}
                             </td>
                             <td class="px-6 py-4">
                                 <div class="row flex-shrink-0">
