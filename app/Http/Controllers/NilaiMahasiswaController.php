@@ -97,6 +97,7 @@ class NilaiMahasiswaController extends Controller
         $request->validate([
             'mahasiswa_id' => 'required',
             'kriteria_id' => 'required',
+            'subcriteria_id' => 'required', // tambahkan 'subcriteria_id'
             'nilai' => 'required',
         ]);
 
@@ -106,6 +107,7 @@ class NilaiMahasiswaController extends Controller
         $nilaiMahasiswa->update([
             'mahasiswa_id' => $request->mahasiswa_id,
             'kriteria_id' => $request->kriteria_id,
+            'subcriteria_id' => $request->subcriteria_id, // tambahkan 'subcriteria_id
             'nilai' => $request->nilai,
         ]);
 

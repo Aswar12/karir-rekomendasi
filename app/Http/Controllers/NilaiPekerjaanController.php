@@ -76,7 +76,10 @@ class NilaiPekerjaanController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $nilaiPekerjaan = NilaiPekerjaan::findOrFail($id);
+        $pekerjaanList = Pekerjaan::all();
+        $kriteriaList = Kriteria::all();
+        return view('nilaiPekerjaan.edit', compact('nilaipekerjaan', 'pekerjaanList', 'kriteriaList'));
     }
 
     /**
@@ -84,7 +87,24 @@ class NilaiPekerjaanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'pekerjaan_id' => 'required',
+            'kriteria_id' => 'required',
+            'subcriteria_id' => 'required',
+            'nilai' => 'required',
+        ]);
+
+        $nilaiPekerjaan = NilaiPekerjaan::findOrFail($id);
+
+        // Menggunakan update bukan create
+        $nilaiPekerjaan->update([
+            'Pekerjaan_id' => $request->Pekerjaan_id,
+            'kriteria_id' => $request->kriteria_id,
+            'subcriteria_id' => $request->subcriteria_id,
+            'nilai' => $request->nilai,
+        ]);
+
+        return redirect()->route('nilaiPekerjaan.index')->with('success', 'Nilai Pekerjaan berhasil diperbarui.');
     }
 
     /**
@@ -92,6 +112,8 @@ class NilaiPekerjaanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $nilaiPekerjaan = NilaiPekerjaan::findOrFail($id);
+        $nilaiPekerjaan->delete();
+        return redirect()->route('nilaiPekerjaan.index')->with('success', 'Item berhasil dihapus');
     }
 }
