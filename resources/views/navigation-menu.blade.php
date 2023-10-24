@@ -18,6 +18,13 @@
                     <x-nav-link href="{{ route('mahasiswas.index') }}" :active="request()->routeIs('mahasiswas.index')">
                         {{ __('Mahasiswa') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('pekerjaan.index') }}" :active="request()->routeIs('pekerjaan.index')">
+                        {{ __('Pekerjaan') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('nilaiPekerjaan.index') }}"
+                        :active="request()->routeIs('nilaiPekerjaan.index')">
+                        {{ __('Nilai Pekerjaan') }}
+                    </x-nav-link>
                     <x-nav-link href="{{ route('kriterias.index') }}" :active="request()->routeIs('kriterias.index')">
                         {{ __('Kriteria') }}
                     </x-nav-link>

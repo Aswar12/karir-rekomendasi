@@ -4,8 +4,11 @@ use App\Http\Controllers\Dashboardmhs;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\NilaiMahasiswaController;
+use App\Http\Controllers\NilaiPekerjaanController;
+use App\Http\Controllers\PekerjaanController;
 use App\Http\Controllers\RekomendasiController;
 use App\Models\NilaiMahasiswa;
+use App\Models\NilaiPekerjaan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +35,17 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/pekerjaan', [PekerjaanController::class, 'index'])->name('pekerjaan.index');
+    Route::get('/pekerjaan-create', [PekerjaanController::class, 'create'])->name('pekerjaan.create');
+    Route::post('/pekerjaan-store', [PekerjaanController::class, 'store'])->name('pekerjaan.store');
+    Route::get('/pekerjaan-edit{pekerjaan}', [PekerjaanController::class, 'edit'])->name('pekerjaan.edit');
+    Route::put('/pekerjaan-update{pekerjaan}', [PekerjaanController::class, 'update'])->name('pekerjaan.update');
+    Route::delete('/pekerjaan-delete{pekerjaan}', [PekerjaanController::class, 'destroy'])->name('pekerjaan.delete');
+
+
+
+
+
     Route::get('/mahasiswas', [MahasiswaController::class, 'index'])->name('mahasiswas.index');
     Route::get('/mahasiswas-edit-{mahasiswa}', [MahasiswaController::class, 'edit'])->name('mahasiswas.edit');
     Route::put('/mahasiswas-update-{mahasiswa}', [MahasiswaController::class, 'update'])->name('mahasiswas.update');
@@ -49,6 +63,10 @@ Route::middleware([
     Route::put('/kriterias-update-{kriteria}', [KriteriaController::class, 'update'])->name('kriterias.update');
     Route::delete('/kriterias-delete-{kriteria}', [KriteriaController::class, 'destroy'])->name('kriterias.delete');
 
+    Route::get('/nilaiPekerjaan', [NilaiPekerjaanController::class, 'index'])->name('nilaiPekerjaan.index');
+    Route::get('/nilaiPekerjaan-show-{pekerjaan}', [NilaiPekerjaanController::class, 'show'])->name('nilaiPekerjaan.show');
+    Route::get('/nilaiPekerjaan-create-{id}', [NilaiPekerjaanController::class, 'create'])->name('nilaiPekerjaan.create');
+    Route::post('/nilaiPekerjaan-store{id}', [NilaiPekerjaanController::class, 'store'])->name('nilaiPekerjaan.store');
 
 
     Route::get('/nilaiMahasiswa-show-{mahasiswa}', [NilaiMahasiswaController::class, 'show'])->name('nilaiMahasiswa.show');
