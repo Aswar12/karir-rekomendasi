@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NilaiMahasiswa;
+use App\Models\Rekomendasi;
 use Illuminate\Http\Request;
 
 class AlternatifController extends Controller

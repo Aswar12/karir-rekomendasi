@@ -22,6 +22,7 @@ class RekomendasiController extends Controller
         $rekomendasis = Rekomendasi::all();
         $nilaiMahasiswa = NilaiMahasiswa::all();
         $alternatif = $this->rekomendasimahasiswa();
+        $alternatifjoin= alternatif::where
         $alternatifkerja = $this->rekomendasikerja();
         return view('rekomendasi.index', compact('rekomendasis', 'nilaiMahasiswa',));
     }
