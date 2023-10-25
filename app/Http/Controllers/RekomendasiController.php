@@ -134,10 +134,10 @@ class RekomendasiController extends Controller
         }
 
         // Ambil semua rekomendasi
-        $rekomendasi = Alternatif::all();
+        $alternatif = Alternatif::all();
 
         // Kembalikan rekomendasi
-        return $rekomendasi;
+        return $alternatif;
     }
 
 
