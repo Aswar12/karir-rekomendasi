@@ -15,9 +15,22 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    @if(Auth::user()->roles == 'mahasiswa')
+                    <x-nav-link href="{{ route('nilaiMahasiswa.show',Auth::user()->id ) }}"
+                        :active="request()->routeIs('nilaiMahasiswa.show')">
+                        {{ __('Nilai ' ) }} {{ Auth::user()->name }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('rekomendasi.index') }}"
+                        :active="request()->routeIs('rekomendasi.index')">
+                        {{ __('Rekomendasi') }}
+                    </x-nav-link>
+                    @endif
+                    @if(Auth::user()->roles == 'admin')
                     <x-nav-link href="{{ route('mahasiswas.index') }}" :active="request()->routeIs('mahasiswas.index')">
                         {{ __('Mahasiswa') }}
                     </x-nav-link>
+
                     <x-nav-link href="{{ route('pekerjaan.index') }}" :active="request()->routeIs('pekerjaan.index')">
                         {{ __('Pekerjaan') }}
                     </x-nav-link>
@@ -32,10 +45,14 @@
                         :active="request()->routeIs('nilaiMahasiswa.index')">
                         {{ __('Nilai Mahasiswa') }}
                     </x-nav-link>
+
+
                     <x-nav-link href="{{ route('rekomendasi.index') }}"
                         :active="request()->routeIs('rekomendasi.index')">
                         {{ __('Rekomendasi') }}
                     </x-nav-link>
+                    @endif
+
                 </div>
             </div>
 

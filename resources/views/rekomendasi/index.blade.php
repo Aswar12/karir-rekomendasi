@@ -60,10 +60,6 @@
                     </tbody>
                 </table>
             </div>
-            {{-- <div class="mt-5 text-center">
-                {{ $rekomendasis->links() }}
-            </div> --}}
-
         </div>
     </div>
     </div>
