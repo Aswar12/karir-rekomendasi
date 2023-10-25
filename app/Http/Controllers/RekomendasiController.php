@@ -36,7 +36,6 @@ class RekomendasiController extends Controller
         $tabel_rekomendasi = Rekomendasi::all()->first();
         // Urutkan nilai mahasiswa berdasarkan mahasiswa ID
         $nilai_pekerjaan = $nilai_pekerjaan->groupBy('mahasiswa_id');
-
         // Hitung skor positif dan skor negatif untuk masing-masing alternatif
         foreach ($nilai_pekerjaan as $mahasiswa_id => $nilai) {
             $skor_positif = [];
