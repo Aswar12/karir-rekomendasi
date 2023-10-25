@@ -22,6 +22,7 @@ class RekomendasiController extends Controller
         $rekomendasis = Rekomendasi::all()->sortByDesc('total_skor');
         $nilaiMahasiswa = NilaiMahasiswa::all();
         $alternatif = $this->rekomendasimahasiswa();
+        $alternatifjoin= alternatif::where
         $alternatifkerja = $this->rekomendasikerja();
         $alternatifs = Alternatif::all();
         return view('rekomendasi.index', compact('rekomendasis', 'nilaiMahasiswa', 'alternatifs'));

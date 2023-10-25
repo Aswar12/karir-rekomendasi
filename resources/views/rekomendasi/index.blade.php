@@ -48,14 +48,19 @@
                             <td class="px-6 py-4">
                                 {{ $rekomendasi->total_skor }}
                             </td>
+                            @foreach ($alternatif as $index => $rekomendasi )
                             <td class="px-6 py-4">
+<<<<<<< HEAD
                                 @foreach ($alternatifs as $alternatif )
                                 @if($rekomendasi->total_skor >= $alternatif->total_skor )
                                 {{ $alternatif->perkerjaan->name_pekerjaan}} <br class="p-2">
                                 @endif
                                 @endforeach
+=======
+                                {{ $rekomendasi->nilaiPekerjaan->pekerjaan->nama_pekerjaan }}
+>>>>>>> 76d6aafe3ebc2e7a5cf8300266d1b168030c61e7
                             </td>
-
+                            
                         </tr>
                         @endforeach
                     </tbody>
