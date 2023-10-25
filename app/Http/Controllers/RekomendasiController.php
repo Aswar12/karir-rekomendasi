@@ -19,12 +19,13 @@ class RekomendasiController extends Controller
      */
     public function index()
     {
-        $rekomendasis = Rekomendasi::all();
+        $rekomendasis = Rekomendasi::all()->sortByDesc('total_skor');
         $nilaiMahasiswa = NilaiMahasiswa::all();
         $alternatif = $this->rekomendasimahasiswa();
         $alternatifjoin= alternatif::where
         $alternatifkerja = $this->rekomendasikerja();
-        return view('rekomendasi.index', compact('rekomendasis', 'nilaiMahasiswa',));
+        $alternatifs = Alternatif::all();
+        return view('rekomendasi.index', compact('rekomendasis', 'nilaiMahasiswa', 'alternatifs'));
     }
 
 
