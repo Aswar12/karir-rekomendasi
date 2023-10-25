@@ -8,7 +8,8 @@
     <div class="py-10 bg-gray-400 h-auto ">
         <div class="max-w-7xl mx-auto h-auto sm:px-6 lg:px-8">
             <div class="bg-white rounded-xl mt-6 mx-6 overflow-hidden shadow-xl sm:rounded-lg">
-                <form action="{{ route('nilaiMahasiswa.update', $nilaiMahasiswa->id) }}" class="my-8 mx-8" method="POST">
+                <form action="{{ route('nilaiMahasiswa.update', $nilaiMahasiswa->id) }}" class="my-8 mx-8"
+                    method="POST">
                     @csrf
                     @method('PUT')
 
@@ -16,7 +17,8 @@
                         <select name="mahasiswa_id" id="mahasiswa_id"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                             @foreach($mahasiswaList as $mahasiswa)
-                                <option value="{{ $mahasiswa->id }}" {{ $nilaiMahasiswa->mahasiswa_id == $mahasiswa->id ? 'selected' : '' }}>{{ $mahasiswa->name }}</option>
+                            <option value="{{ $mahasiswa->id }}" {{ $nilaiMahasiswa->mahasiswa_id == $mahasiswa->id ?
+                                'selected' : '' }}>{{ $mahasiswa->name }}</option>
                             @endforeach
                         </select>
                         <label for="mahasiswa_id"
@@ -27,7 +29,8 @@
                         <select name="kriteria_id" id="kriteria_id"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                             @foreach($kriteriaList as $kriteria)
-                                <option value="{{ $kriteria->id }}" {{ $nilaiMahasiswa->kriteria_id == $kriteria->id ? 'selected' : '' }}>{{ $kriteria->nama_kriteria }}</option>
+                            <option value="{{ $kriteria->id }}" {{ $nilaiMahasiswa->kriteria_id == $kriteria->id ?
+                                'selected' : '' }}>{{ $kriteria->nama_kriteria }}</option>
                             @endforeach
                         </select>
                         <label for="kriteria_id"
@@ -37,8 +40,9 @@
                     <div class="relative z-0 w-full mb-6 group">
                         <select name="kriteria_id" id="kriteria_id"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                            @foreach($SubcriteriaList as $subcriteria)
-                                <option value="{{ $subcriteria->id }}" {{ $nilaiMahasiswa->subcriteria_id == $subcriteria->id ? 'selected' : '' }}>{{ $subcriteria->nama_subkriteria }}</option>
+                            @foreach($subcriteriaList as $subcriteria)
+                            <option value="{{ $subcriteria->id }}" {{ $nilaiMahasiswa->subcriteria_id ==
+                                $subcriteria->id ? 'selected' : '' }}>{{ $subcriteria->nama_subkriteria }}</option>
                             @endforeach
                         </select>
                         <label for="kriteria_id"

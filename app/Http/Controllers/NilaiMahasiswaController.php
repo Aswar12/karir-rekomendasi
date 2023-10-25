@@ -86,7 +86,8 @@ class NilaiMahasiswaController extends Controller
         $nilaiMahasiswa = NilaiMahasiswa::findOrFail($id);
         $mahasiswaList = User::all();
         $kriteriaList = Kriteria::all();
-        return view('nilaiMahasiswa.edit', compact('nilaiMahasiswa', 'mahasiswaList', 'kriteriaList'));
+        $subcriteriaList = Subcriteria::all();
+        return view('nilaiMahasiswa.edit', compact('nilaiMahasiswa', 'mahasiswaList', 'kriteriaList', 'subcriteriaList'));
     }
 
     /**

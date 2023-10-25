@@ -79,7 +79,8 @@ class NilaiPekerjaanController extends Controller
         $nilaiPekerjaan = NilaiPekerjaan::findOrFail($id);
         $pekerjaanList = Pekerjaan::all();
         $kriteriaList = Kriteria::all();
-        return view('nilaiPekerjaan.edit', compact('nilaipekerjaan', 'pekerjaanList', 'kriteriaList'));
+        $subcriteriaList = Subcriteria::all();
+        return view('nilaiPekerjaan.edit', compact('nilaiPekerjaan', 'pekerjaanList', 'kriteriaList', 'subcriteriaList'));
     }
 
     /**

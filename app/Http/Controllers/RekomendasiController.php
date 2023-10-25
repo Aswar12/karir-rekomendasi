@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alternatif;
 use App\Models\Kriteria;
 use App\Models\NilaiMahasiswa;
+use App\Models\NilaiPekerjaan;
 use App\Models\Rekomendasi;
 use App\Models\Subcriteria;
 use App\Models\User;
@@ -19,26 +21,27 @@ class RekomendasiController extends Controller
     {
         $rekomendasis = Rekomendasi::all();
         $nilaiMahasiswa = NilaiMahasiswa::all();
-        $alternatif = $this->rekomendasi();
+        $alternatif = $this->rekomendasimahasiswa();
+        $alternatifkerja = $this->rekomendasikerja();
         return view('rekomendasi.index', compact('rekomendasis', 'nilaiMahasiswa',));
     }
 
 
 
-    function rekomendasi()
+    function rekomendasimahasiswa()
     {
         // Ambil data dari tabel `Kriterias`, `Subcriterias`, dan `Nilai Mahasiswas`
 
-        $nilai_mahasiswa = NilaiMahasiswa::all();
+        $nilai_pekerjaan = NilaiMahasiswa::all();
         $tabel_rekomendasi = Rekomendasi::all()->first();
         // Urutkan nilai mahasiswa berdasarkan mahasiswa ID
-        $nilai_mahasiswa = $nilai_mahasiswa->groupBy('mahasiswa_id');
+        $nilai_pekerjaan = $nilai_pekerjaan->groupBy('mahasiswa_id');
 
         // Hitung skor positif dan skor negatif untuk masing-masing alternatif
-        foreach ($nilai_mahasiswa as $mahasiswa_id => $nilai) {
+        foreach ($nilai_pekerjaan as $mahasiswa_id => $nilai) {
             $skor_positif = [];
             $skor_negatif = [];
-            // $mahasiswa_id = $nilai_mahasiswa->pluck('mahasiswa_id')->first();
+            // $mahasiswa_id = $nilai_pekerjaan->pluck('mahasiswa_id')->first();
             foreach ($nilai as $nilai_individu) {
                 // Ambil nilai subcriteria dari database
                 $subcriteria = Subcriteria::where('id', $nilai_individu->subcriteria_id)->first();
@@ -81,6 +84,61 @@ class RekomendasiController extends Controller
         return $rekomendasi;
     }
 
+    function rekomendasikerja()
+    {
+        // Ambil data dari tabel `Kriterias`, `Subcriterias`, dan `Nilai Mahasiswas`
+
+        $nilai_pekerjaan = NilaiPekerjaan::all();
+        $tabel_rekomendasi = Alternatif::all()->first();
+        // Urutkan nilai mahasiswa berdasarkan mahasiswa ID
+        $nilai_pekerjaan = $nilai_pekerjaan->groupBy('pekerjaan_id');
+
+        // Hitung skor positif dan skor negatif untuk masing-masing alternatif
+        foreach ($nilai_pekerjaan as $pekerjaan_id => $nilai) {
+            $skor_positif = [];
+            $skor_negatif = [];
+            // $pekerjaan_id = $nilai_pekerjaan->pluck('pekerjaan_id')->first();
+            foreach ($nilai as $nilai_individu) {
+                // Ambil nilai subcriteria dari database
+                $subcriteria = Subcriteria::where('id', $nilai_individu->subcriteria_id)->first();
+                $kriteria = Kriteria::where('id', $nilai_individu->kriteria_id)->first();
+                $nilai_subcriteria = $nilai_individu->nilai;
+                $bobot_kriteria = $kriteria->bobot;
+                $bobot_subcriteria = $subcriteria->bobot;
+
+                $skor_positif[] += pow($nilai_subcriteria * $bobot_kriteria * $bobot_subcriteria, 2);
+                $skor_negatif[] += pow($nilai_subcriteria * -1 * $bobot_kriteria * $bobot_subcriteria, 2);
+            }
+
+            // Hitung skor alternatif untuk masing-masing alternatif
+            $skor_alternatif = array_map(function ($skor_positif, $skor_negatif) {
+                return sqrt($skor_positif) / (sqrt($skor_positif) + sqrt($skor_negatif));
+            }, $skor_positif, $skor_negatif);
+
+
+            // Hitung total skor untuk masing-masing mahasiswa
+            $total_skor = array_sum($skor_alternatif);
+
+
+            // Simpan total skor ke tabel rekomendasis
+            if (!Alternatif::where('pekerjaan_id', $pekerjaan_id)->exists()) {
+                Alternatif::create([
+                    'pekerjaan_id' => $pekerjaan_id,
+                    'total_skor' => $total_skor,
+                ]);
+            } else {
+                Alternatif::where('pekerjaan_id', $pekerjaan_id)->update([
+                    'total_skor' => $total_skor,
+                ]);
+            }
+        }
+
+        // Ambil semua rekomendasi
+        $rekomendasi = Alternatif::all();
+
+        // Kembalikan rekomendasi
+        return $rekomendasi;
+    }
 
 
     /**
