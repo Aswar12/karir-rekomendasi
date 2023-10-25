@@ -19,11 +19,12 @@ class RekomendasiController extends Controller
      */
     public function index()
     {
-        $rekomendasis = Rekomendasi::all();
+        $rekomendasis = Rekomendasi::all()->sortByDesc('total_skor');
         $nilaiMahasiswa = NilaiMahasiswa::all();
         $alternatif = $this->rekomendasimahasiswa();
         $alternatifkerja = $this->rekomendasikerja();
-        return view('rekomendasi.index', compact('rekomendasis', 'nilaiMahasiswa',));
+        $alternatifs = Alternatif::all();
+        return view('rekomendasi.index', compact('rekomendasis', 'nilaiMahasiswa', 'alternatifs'));
     }
 
 
@@ -36,6 +37,7 @@ class RekomendasiController extends Controller
         $tabel_rekomendasi = Rekomendasi::all()->first();
         // Urutkan nilai mahasiswa berdasarkan mahasiswa ID
         $nilai_pekerjaan = $nilai_pekerjaan->groupBy('mahasiswa_id');
+
         // Hitung skor positif dan skor negatif untuk masing-masing alternatif
         foreach ($nilai_pekerjaan as $mahasiswa_id => $nilai) {
             $skor_positif = [];

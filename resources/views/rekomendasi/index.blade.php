@@ -49,8 +49,14 @@
                                 {{ $rekomendasi->total_skor }}
                             </td>
                             <td class="px-6 py-4">
+                                @foreach ($alternatifs as $alternatif )
+                                @if($rekomendasi->total_skor >= $alternatif->total_skor )
+                                {{ $alternatif->perkerjaan->name_pekerjaan}} <br class="p-2">
 
+                                @endif
+                                @endforeach
                             </td>
+
                         </tr>
                         @endforeach
                     </tbody>
