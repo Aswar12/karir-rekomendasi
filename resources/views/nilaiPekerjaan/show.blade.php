@@ -63,7 +63,7 @@
                             <td class="px-6 py-4">
                                 <div class="row flex-shrink-0">
 
-                                    <a href="/nilaiMahasiswa-edit-{{ $nilai->id }}"
+                                    <a href="/nilaiPekerjaan-edit-{{ $nilai->id }}"
                                         class="inline-flex px-2 py-2 mx-1 mb-1 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                                             <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->

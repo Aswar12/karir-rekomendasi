@@ -21,8 +21,7 @@
                         :active="request()->routeIs('nilaiMahasiswa.show')">
                         {{ __('Nilai ' ) }} {{ Auth::user()->name }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('rekomendasi.index') }}"
-                        :active="request()->routeIs('rekomendasi.index')">
+                    <x-nav-link href="{{ route('rekomendasi.show') }}" :active="request()->routeIs('rekomendasi.show')">
                         {{ __('Rekomendasi') }}
                     </x-nav-link>
                     @endif

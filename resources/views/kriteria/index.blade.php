@@ -35,14 +35,14 @@
                     <tbody>
                         @foreach ($kriterias as $index => $kriteria )
                         <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
+                            class="bg-white border-b border-2 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="px-6 py-4 border-2">
                                 {{ $index+1 }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 border-2">
                                 {{ $kriteria->nama_kriteria }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 border-2">
                                 {{ $kriteria->bobot }}
                             </td>
                             {{-- <td class="px-6 py-4  " rowspan="2">
@@ -51,7 +51,7 @@
                                 @endforeach
                             </td> --}}
                             <td>
-                                <table>
+                                <table class="border-2">
                                     <tbody>
                                         @foreach ($kriteria->subcriteria as $subkriteria)
                                         <tr class="border-2 dark:bg-gray-800 dark:border-gray-700">

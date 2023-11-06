@@ -10,6 +10,7 @@ use App\Models\Rekomendasi;
 use App\Models\Subcriteria;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class RekomendasiController extends Controller
@@ -161,9 +162,11 @@ class RekomendasiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        $rekomendasis = Rekomendasi::where('mahasiswa_id', Auth::user()->id)->get();
+        $alternatifs = Alternatif::all();
+        return view('rekomendasi.show', compact('rekomendasis', 'alternatifs'));
     }
 
     /**
