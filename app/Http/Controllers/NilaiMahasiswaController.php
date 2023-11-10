@@ -7,6 +7,7 @@ use App\Models\NilaiMahasiswa;
 use App\Models\Subcriteria;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NilaiMahasiswaController extends Controller
 {
@@ -26,11 +27,11 @@ class NilaiMahasiswaController extends Controller
     {
         // Anda mungkin perlu mengirimkan data mahasiswa dan kriteria ke tampilan
         $user = User::findOrFail($id);
-
+        $ipk = Kriteria::where('nama_kriteria', 'like', '%' . 'Index Prestasi Kumulatif' . '%')->get();
         $kriteriaList = Kriteria::all();
         $SubcriteriaList = Subcriteria::all();
 
-        return view('nilaiMahasiswa.create', compact('user', 'kriteriaList', 'SubcriteriaList'));
+        return view('nilaiMahasiswa.create', compact('ipk', 'user', 'kriteriaList', 'SubcriteriaList'));
     }
 
     public function search(Request $request)
@@ -40,7 +41,15 @@ class NilaiMahasiswaController extends Controller
         return view('nilaiMahasiswa.index', compact('nilaiMahasiswa'));
     }
 
+    public function addipkmahasiswa()
+    {
+        $nilaiMahasiswa = NilaiMahasiswa::all();
+        $user = Auth::user();
+        $ipk = Kriteria::where('nama_kriteria', 'like', '%' . 'ipk' . '%');
+        $SubcriteriaList = Subcriteria::all();
 
+        return view('nilaiMahasiswa.ipkmahasiswa', compact('nilaiMahasiswa', 'user',));
+    }
     // Simpan data dari formulir ke database
     public function store(Request $request, string $id)
     {
