@@ -27,11 +27,10 @@ class NilaiMahasiswaController extends Controller
     {
         // Anda mungkin perlu mengirimkan data mahasiswa dan kriteria ke tampilan
         $user = User::findOrFail($id);
-        $ipk = Kriteria::where('nama_kriteria', 'like', '%' . 'Index Prestasi Kumulatif' . '%')->get();
         $kriteriaList = Kriteria::all();
         $SubcriteriaList = Subcriteria::all();
 
-        return view('nilaiMahasiswa.create', compact('ipk', 'user', 'kriteriaList', 'SubcriteriaList'));
+        return view('nilaiMahasiswa.create', compact('user', 'kriteriaList', 'SubcriteriaList'));
     }
 
     public function search(Request $request)
@@ -41,22 +40,13 @@ class NilaiMahasiswaController extends Controller
         return view('nilaiMahasiswa.index', compact('nilaiMahasiswa'));
     }
 
-    public function addipkmahasiswa()
-    {
-        $nilaiMahasiswa = NilaiMahasiswa::all();
-        $user = Auth::user();
-        $ipk = Kriteria::where('nama_kriteria', 'like', '%' . 'ipk' . '%');
-        $SubcriteriaList = Subcriteria::all();
-
-        return view('nilaiMahasiswa.ipkmahasiswa', compact('nilaiMahasiswa', 'user',));
-    }
     // Simpan data dari formulir ke database
     public function store(Request $request, string $id)
     {
         $request->validate([
 
             'kriteria_id' => 'required', // tambahkan 'subcriteria_id
-            'nilai' => 'required',
+
         ]);
 
         if ($request->subcriteria_id == null) {
@@ -64,12 +54,13 @@ class NilaiMahasiswaController extends Controller
         } else {
             $sub_id = $request->subcriteria_id;
         }
-
+        $subcriteria_nilai = Subcriteria::findOrFail($sub_id);
+        $nilai = $subcriteria_nilai->bobot * 10;
         NilaiMahasiswa::create([
             'mahasiswa_id' => $id,
             'kriteria_id' => $request->kriteria_id,
             'subcriteria_id' => $sub_id, // tambahkan 'subcriteria_id
-            'nilai' => $request->nilai,
+            'nilai' => $nilai,
         ]);
 
         return redirect()->route('nilaiMahasiswa.index')->with('success', 'Nilai Mahasiswa berhasil ditambahkan.');
