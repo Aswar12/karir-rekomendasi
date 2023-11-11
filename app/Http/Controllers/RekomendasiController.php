@@ -34,16 +34,16 @@ class RekomendasiController extends Controller
     {
         // Ambil data dari tabel `Kriterias`, `Subcriterias`, dan `Nilai Mahasiswas`
 
-        $nilai_mahasiswa = NilaiMahasiswa::all();
+        $nilai_pekerjaan = NilaiMahasiswa::all();
         $tabel_rekomendasi = Rekomendasi::all()->first();
         // Urutkan nilai mahasiswa berdasarkan mahasiswa ID
-        $nilai_mahasiswa = $nilai_mahasiswa->groupBy('mahasiswa_id');
+        $nilai_pekerjaan = $nilai_pekerjaan->groupBy('mahasiswa_id');
 
         // Hitung skor positif dan skor negatif untuk masing-masing alternatif
-        foreach ($nilai_mahasiswa as $mahasiswa_id => $nilai) {
+        foreach ($nilai_pekerjaan as $mahasiswa_id => $nilai) {
             $skor_positif = [];
             $skor_negatif = [];
-            // $mahasiswa_id = $nilai_mahasiswa->pluck('mahasiswa_id')->first();
+            // $mahasiswa_id = $nilai_pekerjaan->pluck('mahasiswa_id')->first();
             foreach ($nilai as $nilai_individu) {
                 // Ambil nilai subcriteria dari database
                 $subcriteria = Subcriteria::where('id', $nilai_individu->subcriteria_id)->first();
