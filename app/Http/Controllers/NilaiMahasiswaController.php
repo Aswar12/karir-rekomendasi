@@ -62,8 +62,15 @@ class NilaiMahasiswaController extends Controller
             'subcriteria_id' => $sub_id, // tambahkan 'subcriteria_id
             'nilai' => $nilai,
         ]);
+        $role = auth()->user()->role;
 
-        return redirect()->route('nilaiMahasiswa.index')->with('success', 'Nilai Mahasiswa berhasil ditambahkan.');
+        // Mengarahkan berdasarkan role pengguna
+        if ($role == 'admin') {
+            return redirect()->route('nilaiMahasiswa.index')->with('success', 'Nilai Mahasiswa berhasil ditambahkan.');
+        } else {
+            return redirect()->route('nilaiMahasiswa.show', ['id' => $id])->with('success', 'Nilai Mahasiswa berhasil ditambahkan.');
+        }
+    
     }
 
     /**
