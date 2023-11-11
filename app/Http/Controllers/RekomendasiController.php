@@ -12,7 +12,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class RekomendasiController extends Controller
 {
     /**
@@ -164,6 +163,8 @@ class RekomendasiController extends Controller
      */
     public function show()
     {
+        $alternatif = $this->rekomendasimahasiswa();
+        $alternatifkerja = $this->rekomendasikerja();
         $rekomendasis = Rekomendasi::where('mahasiswa_id', Auth::user()->id)->get();
         $alternatifs = Alternatif::all();
         return view('rekomendasi.show', compact('rekomendasis', 'alternatifs'));
