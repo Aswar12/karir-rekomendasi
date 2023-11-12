@@ -56,10 +56,16 @@ class RekomendasiController extends Controller
             }
 
             // Hitung skor alternatif untuk masing-masing alternatif
+            // $skor_alternatif = array_map(function ($skor_positif, $skor_negatif) {
+            //     return sqrt($skor_positif) / (sqrt($skor_positif) + sqrt($skor_negatif));
+            // }, $skor_positif, $skor_negatif);
             $skor_alternatif = array_map(function ($skor_positif, $skor_negatif) {
-                return sqrt($skor_positif) / (sqrt($skor_positif) + sqrt($skor_negatif));
+                if ($skor_positif == 0 && $skor_negatif == 0) {
+                    return 0;
+                } else {
+                    return sqrt($skor_positif) / (sqrt($skor_positif) + sqrt($skor_negatif));
+                }
             }, $skor_positif, $skor_negatif);
-
 
             // Hitung total skor untuk masing-masing mahasiswa
             $total_skor = array_sum($skor_alternatif);
