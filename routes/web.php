@@ -71,7 +71,7 @@ Route::middleware([
     Route::put('/nilaiPekerjaan-update-{nilaiPekerjaan}', [NilaiPekerjaanController::class, 'update'])->name('nilaiPekerjaan.update');
     Route::delete('/nilaiPekerjaan-delete-{nilaiPekerjaan}', [NilaiPekerjaanController::class, 'destroy'])->name('nilaiPekerjaan.delete');
 
-    Route::get('/nilaiMahasiswa-show-{mahasiswa}', [NilaiMahasiswaController::class, 'show'])->name('nilaiMahasiswa.show');
+    Route::get('/nilaiMahasiswa-show-{id}', [NilaiMahasiswaController::class, 'show'])->name('nilaiMahasiswa.show');
     Route::get('/nilaiMahasiswa', [NilaiMahasiswaController::class, 'index'])->name('nilaiMahasiswa.index');
     Route::get('/nilaiMahasiswa-create-{id}', [NilaiMahasiswaController::class, 'create'])->name('nilaiMahasiswa.create');
     Route::post('/nilaiMahasiswa-store{id}', [NilaiMahasiswaController::class, 'store'])->name('nilaiMahasiswa.store');
