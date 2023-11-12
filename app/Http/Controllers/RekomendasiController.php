@@ -50,6 +50,7 @@ class RekomendasiController extends Controller
                 $nilai_subcriteria = $nilai_individu->nilai;
                 $bobot_kriteria = $kriteria->bobot;
                 $bobot_subcriteria = $subcriteria->bobot;
+                dd($bobot_kriteria);
 
                 $skor_positif[] += pow($nilai_subcriteria * $bobot_kriteria * $bobot_subcriteria, 2);
                 $skor_negatif[] += pow($nilai_subcriteria * -1 * $bobot_kriteria * $bobot_subcriteria, 2);
